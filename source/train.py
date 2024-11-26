@@ -72,7 +72,7 @@ trainer = TrainNeuralNet(model)
 trainer.train(
     data_loader.train_imgs,
     data_loader.train_labels,
-    epoch=1,
+    epoch=10,
     learning_rate=0.01,
     batch_size=32
 )
