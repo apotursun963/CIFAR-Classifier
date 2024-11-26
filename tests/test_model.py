@@ -8,8 +8,7 @@ import numpy as np
 import random
 
 
-
-class TestNeuralNet:        # Test loss: 3.6990 | Test accuracy: %49.3300
+class TestNeuralNet:
     def __init__(self, num_layers, x_test, y_test, make_test=False) -> None:
         self.num_layers = num_layers
         self.x_test = x_test
@@ -58,7 +57,6 @@ class TestNeuralNet:        # Test loss: 3.6990 | Test accuracy: %49.3300
         plt.tight_layout()
         plt.show()
 
-# her sınıfta burada böyle çağırmayacaksın scrip.sh olarak yapacaksın bunları yada terminalden ala
 data_loader = Cifar10DataLoader(load_data=True)
 data_loader.load(load="test")
 data_loader.process_data(data="test")
