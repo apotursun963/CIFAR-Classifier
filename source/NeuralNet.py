@@ -4,17 +4,6 @@ from DataLoader import Cifar10DataLoader
 import numpy as np
 
 
-# 1. parametreleri tanımla (w, b)
-# 2. İleri besleme
-# 3. geri yayılım
-# 4. parametre güncelleme
-
-# vs codda ve colab ve derfterde yazdığın bütün derin öğrenme notları toparla
-# ve bunları gücel bir şekilde tr, en olmak üzere githuba at
-# deep learning notes olsun yada farklı güzel olsun hem özet geçmiş olursun
-# hemde ingilizcen gelişir
-
-
 class NeuralNet:
     def __init__(self, input_unit, hidden_units, output_unit):
         self.hidden_lyrs = len(hidden_units)
@@ -85,9 +74,3 @@ class NeuralNet:
             self.weights[idx] = w - alpha * dw
             self.biases[idx] = b - alpha * db
         return (self.weights, self.biases)
-
-    #  test dosyasında evulate evulate dosyasında olmalı
-    def evulate(self):
-        pass
-
-
