@@ -2,6 +2,10 @@
 from utils import relu, softmax, relu_derivative
 import numpy as np
 
+<<<<<<< HEAD:sources/NeuralNet.py
+=======
+
+>>>>>>> 3649a8917a2a0bc8dffdedb29ddaf25dfb50f478:source/NeuralNet.py
 class NeuralNet:
     def __init__(self, input_unit, hidden_units, output_unit):
         self.hidden_lyrs = len(hidden_units)
@@ -72,4 +76,7 @@ class NeuralNet:
             self.weights[idx] = w - alpha * dw
             self.biases[idx] = b - alpha * db
         return (self.weights, self.biases)
+<<<<<<< HEAD:sources/NeuralNet.py
 
+=======
+>>>>>>> 3649a8917a2a0bc8dffdedb29ddaf25dfb50f478:source/NeuralNet.py
