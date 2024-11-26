@@ -1,4 +1,3 @@
-
 from keras._tf_keras.keras.datasets import cifar10
 from keras._tf_keras.keras.utils import to_categorical
 import matplotlib.pyplot as plt
@@ -61,25 +60,50 @@ class Cifar10DataLoader:
         plt.show()
     
     def process_data(self, data=None):
-        if data == "train" and self.load_data:
-            if self.train_imgs is None or self.train_labels is None:
+        if data == "both" and self.load_data:
+            raise ValueError("Training data is not loaded. Please load training data first.")
+
+        if data == "both":
+            if self.train_imgs is None or self.test_imgs is None:
+                raise ValueError("data not loaded please first load the data")
+            self.process_single_data(self.train_imgs, self.train_labels)
+            self.process_single_data(self.test_imgs, self.test_labels)
+            print("Train and Test data pre-processing Complete.")
+        
+        elif data == "train":
+            if self.train_imgs is None:
                 raise ValueError("Training data is not loaded. Please load training data first.")
-            self.train_imgs = self.train_imgs.reshape(self.train_imgs.shape[0], 32 * 32 * 3) / 255.0
-            self.train_labels = to_categorical(self.train_labels, num_classes=10)
+            self.process_single_data(self.train_imgs, self.train_imgs)
             print("Train data pre-processing Complete.")
 
-        elif data == "test" and self.load_data:
-            if self.test_imgs is None or self.test_labels is None:
+        elif data == "test":
+            if self.test_imgs is None:
                 raise ValueError("Testing data is not loaded. Please load testing data first.")
-            self.test_imgs = self.test_imgs.reshape(self.test_imgs.shape[0],  32 * 32 * 3) / 255.0
-            self.test_labels = to_categorical(self.test_labels, num_classes=10)
+            self.process_single_data(self.test_imgs, self.test_labels)
             print("Test data pre-processing Complete.")
-
         else:
             raise ValueError("Please specify the data type as 'train' or 'test'.")
+    
+    def process_single_data(self, images, labels):
+        images = images.reshape(images.shape[0], 32 * 32 * 3) / 255.0
+        labels = to_categorical(labels, num_classes=10)
+        return (images, labels)
+
     def data_summary(self):
-        pass
+        if not self.load_data:
+            raise ValueError("please set load_data=True to load the data.")
+
+        elif self.train_imgs is not None and self.train_labels is not None:
+            print(f"Shape of Training Datasets: {self.train_imgs.shape}")
+        
+        elif self.test_imgs is not None and self.test_labels is not None:
+            print(f"Shape of Testing Datasets: {self.test_imgs.shape}")
 
     def split_data(self):   ## to validation
         pass
 
+
+dataloader = Cifar10DataLoader(load_data=True)
+dataloader.load(load="test")
+dataloader.process_data(data="test")
+dataloader.data_summary()

@@ -60,7 +60,7 @@ class TrainNeuralNet:       # Epoch: 100 | Loss: 0.1259 | Accuracy: %95.83
         plt.tight_layout()
         plt.show()
 
-    def save_model(self):
+    def save_parameters(self):
         for idx, (weight, bias) in enumerate(zip(self.model.weights, self.model.biases)):
             np.save(os.path.join(f"output\\checkpoints\\weights\\W{idx + 1}.npy"), weight)
             np.save(os.path.join(f"output\\checkpoints\\biases\\B{idx + 1}.npy"), bias)
@@ -89,4 +89,4 @@ trainer.train(
 )
 
 trainer.plot_acc_loss()
-trainer.save_model()
+trainer.save_parameters()
