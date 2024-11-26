@@ -1,4 +1,3 @@
-
 from utils import cross_entropy_loss, accuracy
 from DataLoader import Cifar10DataLoader
 import matplotlib.pyplot as plt
@@ -7,7 +6,7 @@ import numpy as np
 import time
 import os
 
-class TrainNeuralNet:       # Epoch: 100 | Loss: 0.1259 | Accuracy: %95.83
+class TrainNeuralNet: 
     def __init__(self, Model) -> None:
         self.model = Model
 
