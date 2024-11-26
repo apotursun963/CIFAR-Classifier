@@ -10,7 +10,7 @@ class TrainNeuralNet:
     def __init__(self, Model) -> None:
         self.model = Model
 
-    def train(self, x_train, y_train, epoch, learning_rate, batch_size):        # mini-batch GD  
+    def train(self, x_train, y_train, epoch, learning_rate, batch_size): 
         self.loss_list = []
         self.accuracy_list = []
 
