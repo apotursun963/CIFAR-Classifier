@@ -39,8 +39,33 @@ The weights and biases for each layer are initialized as follows:
 ### `initialize_parameters()`
 This method initializes the weights and biases for all layers in the netwrok, based on the size of the input, hidden, and output layers. The weights are initialized using a random normal distribution, and biases are set to zero.
 
-### `feedforward()`
+### `feedforward(X)`
+This method computes the forward pass through the network. It calculates the activation for all layers as follows:
+- **First Hidden Layer**: The input `X` is multiplied by the weights and biases are added, followed by applying the ReLu activation function.
+- **Subsetquent Hidden Layers**: For each hidden layer, the previous layer’s output is used as input for the current layer.
+- **Output Layer**: The final output is computed using the softmax activation.
 
+### `backpropagation(inputs, Y)`
+This method implements the backpropagation algorithm to compute the gradient of the weights and biases. It works by:
+1. Calculating the error at the output layer.
+2. Propagating the error backward through each hidden layer.
+3. Calculating the gradients of the weights and biases at each layer.
 
+### `update_parameters(dW, dB, alpha)`
+This method updates the weights and biases using the gradients calculated by backpropagation. It applies gradient descent with a learning rate `alpha` to adjust the parameters.
 
+## Activation Functions
 
+### ReLu Activation Function
+The ReLu (Rectified Linear Unit), is a non-linear activation function used in the hidden layers of neural networks. Its fundamental principle is to zero out negative values while allowing positive values to pass through unchanged. This characteristic helps the model learn quickly.
+```python
+def relu(x):
+    return (np.maximum(0, x))
+```
+### Softmax Activation Function
+The softmax function is a function used in multiple classification problems and converts the output values ​​of the model into probability values ​​between [0, 1]. and the sum of the probability values ​​is always 1.
+```python
+def softmax(x):
+    exps = np.exp(x - np.max(x))
+    return (exps / np.sum(exps, axis=1, keepdims=True))
+```
