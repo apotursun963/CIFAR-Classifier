@@ -1,0 +1,42 @@
+
+cifar10-image-classification/
+├── source/                  # Kaynak kodları
+│   ├── __init__.py          # Paket başlatma dosyası
+│   ├── preprocessing.py     # Veri ön işleme ve augmentasyon işlemleri
+│   ├── NeuralNet.py         # Kendi modelinizin tanımlandığı dosya
+│   ├── train.py             # Modelin eğitildiği dosya
+│   └── utils.py             # Yardımcı fonksiyonlar (örneğin, doğruluk hesaplama)
+│
+├── output/                  # Eğitim ve model çıktıları
+│   ├── checkpoints/         # Model ağırlıkları ve checkpoint dosyaları
+│   ├── logs/                # Eğitim süreci ve test sonuçları (örneğin, TensorBoard logları)
+│   ├── predictions/         # Test sonrası tahminler ve sonuçlar
+│   └── figures/             # Eğitim sürecinin grafiksel sonuçları (kayıp, doğruluk, modeller karşılaştırılması)
+│
+├── docs/                       # Proje belgeleri
+│   ├── dataset_description.md  # Veri seti hakkında açıklamalar
+│   ├── model_architecture.md   # Modelin mimarisi hakkında belgeler
+│   └── training_guide.md       # Eğitim süreci hakkında kılavuz
+│
+├── resources/               # Kaynak dosyaları (modelin dışında kalan yardımcı dosyalar)
+│   ├── config.json          # Model ayarları, hiperparametreler veya yapılandırmalar
+│   ├── logs/                # Eğitim veya test log dosyaları
+│   │   ├── training_log.txt  # Eğitim süreci logları (epoch'lar, kayıp ve doğruluk)
+│   │   └── test_log.txt      # Test sonuçları logları
+│   └── resources.md         # Kaynak dosyalar hakkında genel açıklamalar
+│
+├── tests/                   # Test dosyaları
+│   ├── __init__.py          # Test paketi başlatma dosyası
+│   └── test_model.py        # Model test dosyası
+│
+├── scripts/                  # Proje için yardımcı komut dosyaları
+│   ├── train_model.sh        # Eğitim sürecini başlatan komut dosyası
+│   ├── run_inference.py      # Eğitilen modelle tahmin yapma komut dosyası
+│   ├── setup_environment.sh  # Gerekli kütüphaneleri kuran komut dosyası
+│   └── test_model.sh         # Modeli test eden komut dosyası
+│
+├── LICENSE                  # Yazılım lisansı (proje için uygun bir lisans ekleyin)
+├── requirements.txt         # Proje için gerekli Python kütüphaneleri
+├── README.md                # Proje hakkında genel bilgi ve açıklamalar
+└── .gitignore               # Git için izlenmemesi gereken dosyalar
+

@@ -4,11 +4,12 @@ import matplotlib.pyplot as plt
 from NeuralNet import NeuralNet
 import numpy as np
 import time
-import sys
 import os
 
-class TrainNeuralNet: 
-    def __init__(self, Model) -> None:
+# Epoch 200/200 - Loss: 0.011 - Accuracy: 100.00
+# Training duration of model: 60.27 dk
+class TrainNeuralNet:
+    def __init__(self, Model):
         self.model = Model
 
     def train(self, x_train, y_train, epoch, learning_rate, batch_size): 
@@ -33,11 +34,10 @@ class TrainNeuralNet:
 
             epoch_loss = np.mean(batch_loss)
             epoch_acc = np.mean(batch_acc)
-
             self.loss_list.append(epoch_loss)
             self.accuracy_list.append(epoch_acc)
 
-            if (i % 10 == 0):   # terminale yazmak yerine direkt olarak training_log.txt yaz
+            if (i % 1 == 0):
                 print(f"Epoch {i}/{epoch} - Loss: {epoch_loss:.3f} - Accuracy: {epoch_acc * 100:.2f}")
         end = time.time()
         print(f"Training duration of model: {(end - start) / 60:.2f} dk")
@@ -56,12 +56,12 @@ class TrainNeuralNet:
         axs[1].set_ylabel("Loss")
         axs[1].legend()
         axs[1].grid(True)
-        
+
         plt.tight_layout()
         plt.show()
 
     def save_parameters(self):
-        root_path = os.path.join(os.path.abspath(os.path.join(os.getcwd(), "..")), "output", "chekpoints")
+        root_path = os.path.join(os.path.abspath(os.path.join(os.getcwd(), ".")), "output", "chekpoints")
 
         weights_path = os.path.join(root_path, "weights")
         biases_path = os.path.join(root_path, "biases")
@@ -73,6 +73,7 @@ class TrainNeuralNet:
             np.save(os.path.join(biases_path, f"B{idx + 1}.npy"), bias)
         print("Model Parameters (Weights, Biases) Successfully Saved.")
 
+
 data_loader = Cifar10DataLoader(load_data=True)
 data_loader.load(load="train")
 data_loader.process_data(data="train")
@@ -80,7 +81,7 @@ data_loader.visualize_images(num_imgs=10, dataset="train")
 
 model = NeuralNet(
     input_unit=3072,
-    hidden_units=[256, 512, 256],
+    hidden_units=[512, 512, 512],
     output_unit=10
 )
 
@@ -91,8 +92,8 @@ trainer.train(
     data_loader.train_labels,
     epoch=200,
     learning_rate=0.01,
-    batch_size=50
+    batch_size=100
 )
 
-# trainer.plot_acc_loss()
-# trainer.save_parameters()
+trainer.plot_acc_loss()
+trainer.save_parameters()

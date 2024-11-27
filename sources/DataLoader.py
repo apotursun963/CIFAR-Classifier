@@ -1,3 +1,4 @@
+from keras._tf_keras.keras.preprocessing.image import ImageDataGenerator
 from keras._tf_keras.keras.datasets import cifar10
 from keras._tf_keras.keras.utils import to_categorical
 import matplotlib.pyplot as plt
@@ -86,6 +87,7 @@ class Cifar10DataLoader:
                 raise ValueError("Testing data is not loaded. Please load testing data first.")
             self.test_imgs, self.test_labels = self.process_single_data(self.test_imgs, self.test_labels)
             print("Test data pre-processing Complete.")
+        
         else:
             raise ValueError("Please specify the data type as 'train' or 'test'.")
 
@@ -99,11 +101,10 @@ class Cifar10DataLoader:
         elif self.test_imgs is not None and self.test_labels is not None:
             print(f"Shape of Testing Datasets: {self.test_imgs.shape}")
 
-    def split_data(self):   ## to validation
-        pass
-
 
 # dataloader = Cifar10DataLoader(load_data=True)
-# dataloader.load(load="test")
-# dataloader.process_data(data="test")
+# dataloader.load(load="train")
+# dataloader.process_data(data="train")
 # dataloader.data_summary()
+# dataloader.visualize_images(num_imgs=10, dataset="train")
+

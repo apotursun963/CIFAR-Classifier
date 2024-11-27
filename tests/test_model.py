@@ -22,7 +22,7 @@ class TestNeuralNet:
     def load_parameters(self):
         self.weight_lst = []; self.bias_lst = []
 
-        root_path = os.path.join(os.path.abspath(os.path.join(os.getcwd(), "..")), "output", "chekpoints")
+        root_path = os.path.join(os.path.abspath(os.path.join(os.getcwd(), ".")), "output", "chekpoints")
 
         for idx in range(self.num_layers - 1):
             self.weight_lst.append(np.load(os.path.join(root_path, "weights", f"W{idx + 1}.npy")))
