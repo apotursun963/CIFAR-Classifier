@@ -7,6 +7,8 @@ The model consists of an input layer, multiple hidden layers, and an output laye
 ## Model Class: `NeuralNet`
 The neural network is implemented as a Python class `NeuralNet` with methods to initialize the netwrok, perform feedforward computation, backpropagation, and update parameters.
 
+![Ekran görüntüsü 2024-11-28 021712](https://github.com/user-attachments/assets/08e860b4-02c7-4a9d-998a-3f79876b69ba)
+
 ### Initialization
 The netwrok is initialized with the following parameters:
 - **Input Unit**: The number of input features.
