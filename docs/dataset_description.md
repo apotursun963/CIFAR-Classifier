@@ -34,4 +34,5 @@ CIFAR-10 contains 10 different classes, each with 6,000 images. The classes are 
   - **Total Images:** 10,000 images
   - **Distribution:** Contains exactly 1,000 images per class.
 
-![Ekran görüntüsü 2024-11-28 004547](https://github.com/user-attachments/assets/ba2d640b-86ca-41f7-8b7b-cc82c686e906)
+![Ekran görüntüsü 2024-11-28 010617](https://github.com/user-attachments/assets/7615af94-e810-40a2-960b-6f91963cd099)
+
