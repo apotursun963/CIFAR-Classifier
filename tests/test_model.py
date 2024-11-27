@@ -11,9 +11,9 @@ import random
 class TestNeuralNet:
     def __init__(self, num_layers, x_test, y_test, make_test=False) -> None:
         self.num_layers = num_layers
+        self.make_test = make_test
         self.x_test = x_test
         self.y_test = y_test
-        self.make_test = make_test
         self.classes = [
             "Airplane", "Automobile", "Bird", "Cat", "Deer", 
             "Dog", "Frog", "Horse", "Ship", "Truck"
@@ -22,9 +22,12 @@ class TestNeuralNet:
     def load_parameters(self):
         self.weight_lst = []; self.bias_lst = []
 
+        root_path = os.path.join(os.path.abspath(os.path.join(os.getcwd(), "..")), "output", "chekpoints")
+
         for idx in range(self.num_layers - 1):
-            self.weight_lst.append(np.load(f"output\\checkpoints\\weights\\W{idx + 1}.npy"))
-            self.bias_lst.append(np.load(f"output\\checkpoints\\biases\\B{idx + 1}.npy"))
+            self.weight_lst.append(np.load(os.path.join(root_path, "weights", f"W{idx + 1}.npy")))
+            self.bias_lst.append(np.load(os.path.join(root_path, "biases", f"B{idx + 1}.npy")))
+        print("Model Parameters (Weights, Biases) Successfully Loaded.")
         return (self.weight_lst, self.bias_lst)
 
     def evulate(self):
@@ -32,7 +35,6 @@ class TestNeuralNet:
             raise ValueError("you have to set the make_test=True to execute testing evulation")
 
         W, B = self.load_parameters()
-    
         self.layer_outputs = [relu(np.dot(self.x_test, W[0]) + B[0])]
     
         for i in range(len(self.weight_lst) - 2):
@@ -44,7 +46,7 @@ class TestNeuralNet:
     def compute_acc_loss(self):
         acc = accuracy(self.y_test, self.prediction)
         loss = cross_entropy_loss(self.y_test, self.prediction)
-        print(f"Test loss: {loss:.4f} | Test accuracy: %{acc * 100:.4f}")
+        print(f"Test loss: {loss:.4f}\nTest accuracy: {acc * 100:.4f}")
         
     def visualize_results(self, num_imgs=10):
         plt.figure(figsize=(8, 6))
@@ -70,7 +72,5 @@ testing = TestNeuralNet(
 )
 
 testing.evulate()
-
 testing.visualize_results()
-
 testing.compute_acc_loss()

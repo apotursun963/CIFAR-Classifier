@@ -18,3 +18,9 @@ def accuracy(Y, predictions):
 def cross_entropy_loss(Y, predictions):
     predictions = np.clip(predictions, 1e-9, 1 - 1e-9)
     return (-np.mean(np.sum(Y * np.log(predictions), axis=1)))
+
+def write_log_files(text, file_type=None):
+    if file_type == "train":
+        with open("training_log.txt", "w") as file:
+            file.write()
+        

@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from NeuralNet import NeuralNet
 import numpy as np
 import time
+import sys
 import os
 
 class TrainNeuralNet: 
@@ -36,10 +37,10 @@ class TrainNeuralNet:
             self.loss_list.append(epoch_loss)
             self.accuracy_list.append(epoch_acc)
 
-            if (i % 1 == 0):
-                print(f"Epoch: {i} | Loss: {epoch_loss:.4f} | Accuracy: %{epoch_acc * 100:.2f}")
+            if (i % 10 == 0):   # terminale yazmak yerine direkt olarak training_log.txt yaz
+                print(f"Epoch {i}/{epoch} - Loss: {epoch_loss:.3f} - Accuracy: {epoch_acc * 100:.2f}")
         end = time.time()
-        print(f"Training duration of model: {(end - start) / 60}")
+        print(f"Training duration of model: {(end - start) / 60:.2f} dk")
 
     def plot_acc_loss(self):
         _, axs = plt.subplots(2, 1, figsize=(8,6))
@@ -50,21 +51,27 @@ class TrainNeuralNet:
         axs[0].legend()
         axs[0].grid(True)
         # loss
-        axs[0].plot(self.loss_list, label="Loss", color="r")
-        axs[0].set_xlabel("Epoch")
-        axs[0].set_ylabel("Loss")
-        axs[0].legend()
-        axs[0].grid(True)
+        axs[1].plot(self.loss_list, label="Loss", color="r")
+        axs[1].set_xlabel("Epoch")
+        axs[1].set_ylabel("Loss")
+        axs[1].legend()
+        axs[1].grid(True)
         
         plt.tight_layout()
         plt.show()
 
     def save_parameters(self):
-        for idx, (weight, bias) in enumerate(zip(self.model.weights, self.model.biases)):
-            np.save(os.path.join(f"output\\checkpoints\\weights\\W{idx + 1}.npy"), weight)
-            np.save(os.path.join(f"output\\checkpoints\\biases\\B{idx + 1}.npy"), bias)
-        print("Model Parameters (Weights, Biases) Successfully Saved.")
+        root_path = os.path.join(os.path.abspath(os.path.join(os.getcwd(), "..")), "output", "chekpoints")
 
+        weights_path = os.path.join(root_path, "weights")
+        biases_path = os.path.join(root_path, "biases")
+        os.makedirs(weights_path, exist_ok=True)
+        os.makedirs(biases_path, exist_ok=True)
+
+        for idx, (weight, bias) in enumerate(zip(self.model.weights, self.model.biases)):
+            np.save(os.path.join(weights_path, f"W{idx + 1}.npy"), weight)
+            np.save(os.path.join(biases_path, f"B{idx + 1}.npy"), bias)
+        print("Model Parameters (Weights, Biases) Successfully Saved.")
 
 data_loader = Cifar10DataLoader(load_data=True)
 data_loader.load(load="train")
@@ -82,10 +89,10 @@ trainer = TrainNeuralNet(model)
 trainer.train(
     data_loader.train_imgs,
     data_loader.train_labels,
-    epoch=1,
+    epoch=200,
     learning_rate=0.01,
-    batch_size=64
+    batch_size=50
 )
 
-trainer.plot_acc_loss()
-trainer.save_parameters()
+# trainer.plot_acc_loss()
+# trainer.save_parameters()

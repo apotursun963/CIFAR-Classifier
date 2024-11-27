@@ -59,6 +59,11 @@ class Cifar10DataLoader:
             plt.axis("off")
         plt.show()
     
+    def process_single_data(self, images, labels):
+        images = images.reshape(images.shape[0], 32 * 32 * 3) / 255.0
+        labels = to_categorical(labels, num_classes=10)
+        return (images, labels)
+
     def process_data(self, data=None):
         if data == "both" and self.load_data:
             raise ValueError("Training data is not loaded. Please load training data first.")
@@ -66,28 +71,23 @@ class Cifar10DataLoader:
         if data == "both":
             if self.train_imgs is None or self.test_imgs is None:
                 raise ValueError("data not loaded please first load the data")
-            self.process_single_data(self.train_imgs, self.train_labels)
-            self.process_single_data(self.test_imgs, self.test_labels)
+            self.train_imgs, self.train_labels = self.process_single_data(self.train_imgs, self.train_labels)
+            self.test_imgs, self.test_labels = self.process_single_data(self.test_imgs, self.test_labels)
             print("Train and Test data pre-processing Complete.")
         
         elif data == "train":
             if self.train_imgs is None:
                 raise ValueError("Training data is not loaded. Please load training data first.")
-            self.process_single_data(self.train_imgs, self.train_imgs)
+            self.train_imgs, self.train_labels = self.process_single_data(self.train_imgs, self.train_labels)
             print("Train data pre-processing Complete.")
 
         elif data == "test":
             if self.test_imgs is None:
                 raise ValueError("Testing data is not loaded. Please load testing data first.")
-            self.process_single_data(self.test_imgs, self.test_labels)
+            self.test_imgs, self.test_labels = self.process_single_data(self.test_imgs, self.test_labels)
             print("Test data pre-processing Complete.")
         else:
             raise ValueError("Please specify the data type as 'train' or 'test'.")
-    
-    def process_single_data(self, images, labels):
-        images = images.reshape(images.shape[0], 32 * 32 * 3) / 255.0
-        labels = to_categorical(labels, num_classes=10)
-        return (images, labels)
 
     def data_summary(self):
         if not self.load_data:
@@ -103,7 +103,7 @@ class Cifar10DataLoader:
         pass
 
 
-dataloader = Cifar10DataLoader(load_data=True)
-dataloader.load(load="test")
-dataloader.process_data(data="test")
-dataloader.data_summary()
+# dataloader = Cifar10DataLoader(load_data=True)
+# dataloader.load(load="test")
+# dataloader.process_data(data="test")
+# dataloader.data_summary()
