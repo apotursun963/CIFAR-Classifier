@@ -29,7 +29,7 @@ CIFAR-10 contains 10 different classes, each with 6,000 images. The classes are 
   - **Batch Division:**
     - Divided into 5 training batches, each containing 10,000 images.
     - Each batch contains a random mix of images across all classes.
-    - 
+
 #### Test Data
   - **Total Images:** 10,000 images
   - **Distribution:** Contains exactly 1,000 images per class.
