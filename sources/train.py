@@ -6,7 +6,6 @@ import numpy as np
 import time
 import os
 
-# Epoch 200/200 - Loss: 0.011 - Accuracy: 100.00
 # Training duration of model: 60.27 dk
 class TrainNeuralNet:
     def __init__(self, Model):
