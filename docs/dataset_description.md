@@ -12,7 +12,7 @@ The dataset provides a balanced distribution of images across all classes, makin
 CIFAR-10 includes the following 10 classes, each containing 6,000 images:
 "Airplane", "Automobile", "Bird", "Cat", "Deer", "Dog", "Frog", "Horse", "Ship", "Truck"
 
-
+![Ekran görüntüsü 2024-11-28 004547](https://github.com/user-attachments/assets/ba2d640b-86ca-41f7-8b7b-cc82c686e906)
 
 ### Data Structure
 #### Training Data
