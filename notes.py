@@ -1,7 +1,6 @@
-
 import numpy as np
 
-
+# np.random.randn():
 # Bu fonksiyon, ortalaması 0 ve varyansı 1 olan standart normal dağılıma göre rastgele sayılar üretir.
 # Çıktıdaki değerler genellikle negatif, pozitif veya sıfır olabilir, 
 # çünkü normal dağılımın özelliği gereği, sayıların çoğu 0 civarındadır.
@@ -9,6 +8,7 @@ import numpy as np
 normal_dagilim = np.random.randn(2,3)
 print(normal_dagilim)
 
+# np.random.rand():
 # Bu fonksiyon, 0 ile 1 arasında rastgele sayılar üretir.
 # Üretilen değerler her zaman pozitif ve 0 ile 1 arasında olacaktır.
 print(np.random.rand(2,3))
@@ -22,15 +22,14 @@ print(np.random.rand(2,3))
 # he = np.sqrt(2 / "input_size")
 
 
-# np.maximum:
-# bu fonksiyondur ve iki array (veya bir array ile bir skalar) elemanlarını 
+# np.maximum():
+# bu fonksiyon iki array (veya bir array ile bir skalar) elemanlarını 
 # karşılaştırarak her konumda daha büyük olan değeri döndürür
 
 a = np.array([1,2,3])
 b = np.array([0,6,1])
 print(np.maximum(a, b))
 print(np.maximum(0, a))
-
 
 # np.where(condition, x, y)
 # Bu kullanımda, condition koşulunun doğru olduğu yerlerde x, yanlış olduğu yerlerde ise y değeri seçilir.
