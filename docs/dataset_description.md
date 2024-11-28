@@ -6,7 +6,7 @@ This dataset is widely used for benchmarking machine learning and deep learning 
 CIFAR-10 consist of 60,000 32x32 pixel color images divided into 10 mutually exclusive classes. 
 The dataset provides a balanced distribution of images across all classes, making it ideal for training and evulating models.
 
-![Ekran görüntüsü 2024-11-28 010617](https://github.com/user-attachments/assets/7615af94-e810-40a2-960b-6f91963cd099)
+![cifar-10-img](https://github.com/user-attachments/assets/7615af94-e810-40a2-960b-6f91963cd099)
 
 ## Dataset Details
   
