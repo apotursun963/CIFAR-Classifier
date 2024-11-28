@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import random
 
-
 class TestNeuralNet:
     def __init__(self, num_layers, x_test, y_test, make_test=False) -> None:
         self.num_layers = num_layers
@@ -59,11 +58,12 @@ class TestNeuralNet:
         plt.tight_layout()
         plt.show()
 
+# Loading and processing the CIFAR-10 test data
 data_loader = Cifar10DataLoader(load_data=True)
 data_loader.load(load="test")
 data_loader.process_data(data="test")
 
-
+# Initialize the test class
 testing = TestNeuralNet(
     num_layers=5, 
     x_test=data_loader.test_imgs, 
@@ -71,6 +71,11 @@ testing = TestNeuralNet(
     make_test=True
 )
 
+# Perform model evaluation
 testing.evulate()
+
+# Visualize the results
 testing.visualize_results()
+
+# Compute and display the test accuracy and loss
 testing.compute_acc_loss()
