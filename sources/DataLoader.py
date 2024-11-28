@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import random
 
-
 class Cifar10DataLoader:
     def __init__(self, load_data=False) -> None:
         self.load_data = load_data
@@ -102,9 +101,17 @@ class Cifar10DataLoader:
             print(f"Shape of Testing Datasets: {self.test_imgs.shape}")
 
 
-# dataloader = Cifar10DataLoader(load_data=True)
-# dataloader.load(load="train")
-# dataloader.process_data(data="train")
-# dataloader.data_summary()
-# dataloader.visualize_images(num_imgs=10, dataset="train")
+# Creating an instance from Cifar10DataLoader class 
+dataloader = Cifar10DataLoader(load_data=True)
 
+# loading dataset by load
+dataloader.load(load="train")
+
+# processing data
+dataloader.process_data(data="train")
+
+# dataset information
+dataloader.data_summary()
+
+# visualize random images
+dataloader.visualize_images(num_imgs=10, dataset="train")
