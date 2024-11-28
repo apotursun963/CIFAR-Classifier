@@ -23,7 +23,7 @@ The model is built using the **artificial neural network** (ANN) architecture. T
 - **Hidden layers**: There are three hidden layers, each containing 512 neurons, using the ReLU activation function.
 - **Output layer**: The final layer consists of 10 neurons, and the **softmax** activation function is used to calculate the probability for each class.
 
-For more information about the model architecture, you can access it **here**: [Model_Architecture](docs/model_architecture.md).
+For more information about the model architecture, you can access it **here**: [Model-Architecture](docs/model_architecture.md).
 
 ### 3. Training Process
 During training, the model makes predictions by comparing with the **true labels** and updates its weights using the **backpropagation** algorithm to improve accuracy. The optimization algorithm used is **Gradient Descent** (GD), with hyperparameters such as learning rate and batch size adjust during the process.
