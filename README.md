@@ -33,3 +33,56 @@ Once the model is trained, the accuracy is calculated using the test dataset. Ju
 
 ### 5. Saving the Model
 After training, all **weights** and **biases** are saved. This ensures that the trained model can be loaded and used again later.
+
+## Example Code
+
+```python
+from utils import cross_entropy_loss, accuracy
+from DataLoader import Cifar10DataLoader
+from NeuralNet import NeuralNet
+import numpy as np
+import time
+
+class TrainNeuralNet:
+    def __init__(self, Model):
+        self.model = Model
+
+    def train(self, x_train, y_train, epoch, learning_rate): 
+        self.loss_list = []
+        self.accuracy_list = []
+
+        start = time.time()
+        for i in range(1, epoch +1):
+            predictions = self.model.feedforward(x_train)
+            dW, dB = self.model.backpropagation(x_train, y_train)
+            self.model.update_parameters(dW, dB, learning_rate)
+
+            loss = cross_entropy_loss(y_train, predictions)
+            self.loss_list.append(loss)
+            acc = accuracy(y_train, predictions)
+            self.accuracy_list.append(acc)
+            
+            if (i % 200 == 0):
+                print(f"Epoch {i}/{epoch} - Loss: {loss:.3f} - Accuracy: {acc * 100:.2f}")
+        end = time.time()
+        print(f"Training duration of model: {(end - start) / 60:.2f} minute")
+
+data_loader = Cifar10DataLoader(load_data=True)
+data_loader.load(load="train")
+data_loader.process_data(data="train")
+
+model = NeuralNet(
+    input_unit=3072,
+    hidden_units=[256, 512, 256],
+    output_unit=10
+)
+
+trainer = TrainNeuralNet(model)
+
+trainer.train(
+    data_loader.train_imgs,
+    data_loader.train_labels,
+    epoch=2000,
+    learning_rate=0.01,
+)
+```
