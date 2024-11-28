@@ -6,38 +6,27 @@ import numpy as np
 import time
 import os
 
-# Training duration of model: 60.27 dk
 class TrainNeuralNet:
     def __init__(self, Model):
-        self.model = Model
-
-    def train(self, x_train, y_train, epoch, learning_rate, batch_size): 
+        self.model = Model            # Initializing the model
+    
+    def train(self, x_train, y_train, epoch, learning_rate): 
         self.loss_list = []
         self.accuracy_list = []
 
         start = time.time()
         for i in range(1, epoch +1):
-            batch_loss = []
-            batch_acc = []
+            predictions = self.model.feedforward(x_train)
+            dW, dB = self.model.backpropagation(x_train, y_train)
+            self.model.update_parameters(dW, dB, learning_rate)
 
-            for j in range(0, len(x_train), batch_size):
-                x_batch = x_train[j: j + batch_size]
-                y_batch = y_train[j: j + batch_size]
+            loss = cross_entropy_loss(y_train, predictions)
+            self.loss_list.append(loss)
+            acc = accuracy(y_train, predictions)
+            self.accuracy_list.append(acc)
 
-                predictions = self.model.feedforward(x_batch)
-                dW, dB = self.model.backpropagation(x_batch, y_batch)
-                self.model.update_parameters(dW, dB, learning_rate)
-
-                batch_loss.append(cross_entropy_loss(y_batch, predictions))
-                batch_acc.append(accuracy(y_batch, predictions))
-
-            epoch_loss = np.mean(batch_loss)
-            epoch_acc = np.mean(batch_acc)
-            self.loss_list.append(epoch_loss)
-            self.accuracy_list.append(epoch_acc)
-
-            if (i % 1 == 0):
-                print(f"Epoch {i}/{epoch} - Loss: {epoch_loss:.3f} - Accuracy: {epoch_acc * 100:.2f}")
+            if (i % 250 == 0):
+                print(f"Epoch {i} - Loss: {loss:.3f} - Accuracy: {acc * 100:.2f}")
         end = time.time()
         print(f"Training duration of model: {(end - start) / 60:.2f} dk")
 
@@ -73,26 +62,32 @@ class TrainNeuralNet:
         print("Model Parameters (Weights, Biases) Successfully Saved.")
 
 
+# Initializing the CIFAR-10 data loader
 data_loader = Cifar10DataLoader(load_data=True)
 data_loader.load(load="train")
 data_loader.process_data(data="train")
 data_loader.visualize_images(num_imgs=10, dataset="train")
 
+# Creating an nn from the NeuralNet class
 model = NeuralNet(
     input_unit=3072,
-    hidden_units=[512, 512, 512],
+    hidden_units=[256, 512, 256],
     output_unit=10
 )
 
+# Initializing TrainNeuralNet class to train the model
 trainer = TrainNeuralNet(model)
 
+# Training the model for 7500 epochs, learning rate is 0.01
 trainer.train(
     data_loader.train_imgs,
     data_loader.train_labels,
-    epoch=200,
+    epoch=7500,
     learning_rate=0.01,
-    batch_size=100
 )
 
+# We draw the accuracies and losses in train
 trainer.plot_acc_loss()
+
+# Saving the parameters of the model
 trainer.save_parameters()
