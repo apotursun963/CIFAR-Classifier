@@ -67,6 +67,7 @@ class TrainNeuralNet:
         end = time.time()
         print(f"Training duration of model: {(end - start) / 60:.2f} minute")
 
+
 data_loader = Cifar10DataLoader(load_data=True)
 data_loader.load(load="train")
 data_loader.process_data(data="train")
