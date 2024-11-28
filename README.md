@@ -1,6 +1,6 @@
 # Cifar-10 Classification with Neural Network
 
-![Dil](https://img.shields.io/github/languages/top/apotursun963/praestans)
+![Dil](https://img.shields.io/github/languages/apotursun963/praestans)
 
 ## Projects Overview
 This projects performs classification on the **CIFAR-10 dataset** using an artificial neural network (ANN) model.
