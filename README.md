@@ -1,5 +1,7 @@
 # Cifar-10 Classification with Neural Network
 
+![lang](https://shields.io/badge/github/top/apotursun963/CIFAR-Classifier)
+
 ## Projects Overview
 This projects performs classification on the **CIFAR-10 dataset** using an artificial neural network (ANN) model.
 Our model is trained using keras and Tensorflow, with the goal of correctly classifying each image in this dataset into its respective class.
