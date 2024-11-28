@@ -1,0 +1,10 @@
+Epoch 200/2000 - Loss: 1.970 - Accuracy: 30.78
+Epoch 400/2000 - Loss: 1.870 - Accuracy: 34.76
+Epoch 600/2000 - Loss: 1.811 - Accuracy: 36.98
+Epoch 800/2000 - Loss: 1.763 - Accuracy: 38.75
+Epoch 1000/2000 - Loss: 1.723 - Accuracy: 40.18
+Epoch 1200/2000 - Loss: 1.690 - Accuracy: 41.29
+Epoch 1400/2000 - Loss: 1.671 - Accuracy: 41.73
+Epoch 1600/2000 - Loss: 1.648 - Accuracy: 42.51
+Epoch 1800/2000 - Loss: 1.638 - Accuracy: 42.71
+Epoch 2000/2000 - Loss: 1.612 - Accuracy: 43.42
