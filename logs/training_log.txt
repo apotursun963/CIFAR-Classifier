@@ -18,4 +18,4 @@ Epoch 170 - Loss: 0.388 - Accuracy: 88.20
 Epoch 180 - Loss: 0.342 - Accuracy: 89.52
 Epoch 190 - Loss: 0.307 - Accuracy: 90.51
 Epoch 200 - Loss: 0.279 - Accuracy: 91.32
-Training duration of model: 47.51 dk
+Training duration of model: 47.51 minute
