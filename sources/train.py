@@ -27,7 +27,7 @@ class TrainNeuralNet:
             predictions_epoch = self.model.feedforward(x_train)
             loss = cross_entropy_loss(y_train, predictions_epoch)
             self.loss_list.append(loss)
-            acc = accuracy(y_train, predictions)
+            acc = accuracy(y_train, predictions_epoch)
             self.accuracy_list.append(acc)
 
             if i % 10 == 0 or i == epoch:
