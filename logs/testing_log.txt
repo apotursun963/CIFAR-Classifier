@@ -1,2 +1,2 @@
-Test loss: 1.4015
-Test accuracy: 49.9100    -> Not good man 
+Test loss: 3.8884
+Test accuracy: 52.6100      -> Not good man 
