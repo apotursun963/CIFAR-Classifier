@@ -1,4 +1,3 @@
-from keras._tf_keras.keras.preprocessing.image import ImageDataGenerator
 from keras._tf_keras.keras.datasets import cifar10
 from keras._tf_keras.keras.utils import to_categorical
 import matplotlib.pyplot as plt
