@@ -46,24 +46,29 @@ import time
 class TrainNeuralNet:
     def __init__(self, Model):
         self.model = Model
-
-    def train(self, x_train, y_train, epoch, learning_rate): 
+    
+    def train(self, x_train, y_train, epoch, learning_rate, batch_size): 
         self.loss_list = []
         self.accuracy_list = []
 
         start = time.time()
         for i in range(1, epoch +1):
-            predictions = self.model.feedforward(x_train)
-            dW, dB = self.model.backpropagation(x_train, y_train)
-            self.model.update_parameters(dW, dB, learning_rate)
-
-            loss = cross_entropy_loss(y_train, predictions)
+            for batch in range(0, len(x_train), batch_size):
+                x_batch = x_train[batch: batch + batch_size]
+                y_batch = y_train[batch: batch + batch_size]
+                
+                self.model.feedforward(x_train)
+                dW, dB = self.model.backpropagation(x_train, y_train)
+                self.model.update_parameters(dW, dB, learning_rate)
+            
+            predictions_epoch = self.model.feedforward(x_train)
+            loss = cross_entropy_loss(y_train, predictions_epoch)
             self.loss_list.append(loss)
             acc = accuracy(y_train, predictions)
             self.accuracy_list.append(acc)
-            
-            if (i % 200 == 0):
-                print(f"Epoch {i}/{epoch} - Loss: {loss:.3f} - Accuracy: {acc * 100:.2f}")
+
+            if i % 10 == 0 or i == epoch:
+                print(f"Epoch {i} - Loss: {loss:.3f} - Accuracy: {acc * 100:.2f}")
         end = time.time()
         print(f"Training duration of model: {(end - start) / 60:.2f} minute")
 
