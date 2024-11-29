@@ -26,7 +26,7 @@ The model is built using the **artificial neural network** (ANN) architecture. T
 For more information about the model architecture, you can access it **here**: [Model-Architecture](docs/model_architecture.md).
 
 ### 3. Training Process
-During training, the model makes predictions by comparing with the **true labels** and updates its weights using the **backpropagation** algorithm to improve accuracy. The optimization algorithm used is **Gradient Descent** (GD), with hyperparameters such as learning rate and batch size adjust during the process.
+During training, the model makes predictions by comparing with the **true labels** and updates its weights using the **backpropagation** algorithm to improve accuracy. The optimization algorithm used is **Mini-Batch Gradient Descent** (MBGD), with hyperparameters such as learning rate and batch size adjust during the process.
 
 ### 4. Testing and Evaluation
 Once the model is trained, the accuracy is calculated using the test dataset. Just like during training, predictions are made on the test data, and the model's overall performance is evaluated. Additionally, functions to visualize loss and accuracy graphs during the training process have been included.
